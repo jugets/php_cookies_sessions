@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +39,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                <?php if(isset($_SESSION['loginname'])){?>
+                        <li><a href="/logout.php">Log out</a></li>
+                    <?php }else{ ?>
+                        <li><a href="/login.php">Log in</a></li>
+                    <?php } ?>
                     <li><a href="#">Chocolates chips</a></li>
                     <li><a href="#">Nuts</a></li>
                     <li><a href="#">Gluten full</a></li>
@@ -48,6 +58,13 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+    <?php
+    if(isset($_SESSION['loginname']))
+    {
+        echo '<strong>Hello '.$_SESSION['loginname'].'!</strong>';
+    }else{
+        echo '<strong>Hello Wilder !</strong>';
+    }
+        ?>
     </div>
 </header>
